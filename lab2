@@ -1,0 +1,27 @@
+# Cargar las librerías necesarias
+library(ggplot2)
+
+# Cargar los datos de la serie temporal
+# Aquí debes poner la ruta de tu archivo de datos
+serie_temporal <- read.csv("ruta/a/tu/archivo.csv")
+
+# Visualizar las primeras filas de los datos para comprender su estructura
+head(serie_temporal)
+
+# Verificar la estructura de los datos (tipos de variables)
+str(serie_temporal)
+
+# Graficar la serie temporal
+ggplot(serie_temporal, aes(x = Fecha, y = Valor)) +
+  geom_line() +
+  labs(title = "Visualización de la Serie Temporal", x = "Fecha", y = "Valor") +
+  theme_minimal()
+
+# Si la fecha no está en formato adecuado, convertirla:
+serie_temporal$Fecha <- as.Date(serie_temporal$Fecha, format="%Y-%m-%d")
+
+# Graficar de nuevo después de la conversión de la fecha
+ggplot(serie_temporal, aes(x = Fecha, y = Valor)) +
+  geom_line() +
+  labs(title = "Serie Temporal - Gráfico con Fechas Correctas", x = "Fecha", y = "Valor") +
+  theme_minimal()
